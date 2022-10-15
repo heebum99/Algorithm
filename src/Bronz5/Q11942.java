@@ -2,7 +2,7 @@ package Bronz5;
 
 public class Q11942 {
     public static void main(String[] args) {
-        String word  = "°í·Á´ëÇĞ±³";
+        String word  = "ê³ ë ¤ëŒ€í•™êµ";
         System.out.println(word);
     }
 }
