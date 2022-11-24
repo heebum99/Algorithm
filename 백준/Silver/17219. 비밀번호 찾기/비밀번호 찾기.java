@@ -1,31 +1,60 @@
-import java.util.HashMap;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-//첫째 줄에 저장된 사이트 주소의 수 N(1 ≤ N ≤ 100,000)과 비밀번호를 찾으려는 사이트 주소의 수 M(1 ≤ M ≤ 100,000)이 주어진다.
-//두번째 줄부터 N개의 줄에 걸쳐 각 줄에 사이트 주소와 비밀번호가 공백으로 구분되어 주어진다. 사이트 주소는 알파벳 소문자, 알파벳 대문자, 대시('-'), 마침표('.')로 이루어져 있고, 중복되지 않는다
-//비밀번호는 알파벳 대문자로만 이루어져 있다. 모두 길이는 최대 20자이다.
-//N+2번째 줄부터 M개의 줄에 걸쳐 비밀번호를 찾으려는 사이트 주소가 한줄에 하나씩 입력된다. 이때, 반드시 이미 저장된 사이트 주소가 입력된다.
-//첫 번째 줄부터 M개의 줄에 걸쳐 비밀번호를 찾으려는 사이트 주소의 비밀번호를 차례대로 각 줄에 하나씩 출력한다.
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt(); //사이트 주소의 수
-        int M = scanner.nextInt(); //비밀번호를 찾으려는 주소의 수
-        int i = 0;
-        String address; //주소
-        String password; //암호
-        HashMap<String, String> h = new HashMap<>();
-        while (i < N) {
-            address = scanner.next();
-            password = scanner.next().toUpperCase(); //대문자로 변환
-            h.put(address, password);
-            i++;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int[] N = new int[2]; //첫번째 입력=> 입력할 사이트 주소 개수, 두번째 입력=> 비밀번호를 알아낼 사이트 주소 개수
+        String n = br.readLine(); //숫자(사이트 주소 개수, 사이트 별 비밀번호를 알아낼 주소 개수)를 입력받기 위함
+        StringTokenizer st1 = new StringTokenizer(n, " ");
+        for (int i = 0; i < N.length; i++) {
+            if (st1.hasMoreTokens()) {
+                N[i] = Integer.parseInt(st1.nextToken());
+            }
         }
-        i = 0;
-        while (i < M) {
-            address = scanner.next();
-            System.out.println(h.get(address));
-            i++;
+
+//        HashSet<String> set = new HashSet<>(); //사이트 주소 중복방지를 위함
+//        String[] password = new String[N[0]]; //패스워드 개수 = 사이트 주소 개수
+        //HashSet은 저장한 순서대로 저장되지 않는다. hashCode()의 리턴값의 영향을 받기 때문
+
+        String s = " "; //사이트 주소 및 비밀번호를 입력받기 위함
+        HashMap<String, String> hm = new HashMap<>();
+
+        for (int j = 0; j < N[0]; j++) {
+            s = br.readLine();
+            StringTokenizer st2 = new StringTokenizer(s, " ");
+            if (st2.hasMoreTokens()) {
+                hm.put(st2.nextToken(),st2.nextToken());
+//                set.add(st2.nextToken());
+//                password[j] = st2.nextToken().toUpperCase();
+            }
         }
+
+//        Iterator it = set.iterator(); //hashset은 전체 출력밖에 없으므로 iterator로 순차 검색
+//        int i = 0;
+//        while (it.hasNext()) {
+//            hm.put((String) it.next(), password[i]);
+//            i++;
+//        }
+        
+        String search[] = new String[N[1]]; //비밀번호를 받아올 주소를 저장
+        for (int i = 0; i < N[1]; i++) { //비밀번호를 받아올 주소의 개수만큼 반복
+            if ((search[i]=br.readLine()) == null) {
+                break;
+            }
+        }
+        br.close();
+
+        for (int i = 0; i < N[1]; i++) {
+            bw.write(hm.get(search[i]));
+            bw.newLine();
+        }
+
+        bw.flush();
+        bw.close();
+
     }
 }
+
