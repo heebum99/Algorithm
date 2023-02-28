@@ -28,8 +28,11 @@ public class Main {
             hashValue += (value * Math.pow(r, i));
         }
 
-        System.out.println(hashValue);
+        bw.write(Integer.toString(hashValue));
+        bw.flush();
 
+        bw.close();
+        br.close();
 
     }
 }
