@@ -9,22 +9,19 @@ public class Q15552 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int T = Integer.parseInt(br.readLine()); //입력 횟수
-        int cnt = 0;
-        while (cnt < T) {
-            cnt++;
+        int T = Integer.parseInt(br.readLine()); //테스트 케이스 개수
 
+        for (int i = 0; i < T; i++) {
             String s = br.readLine();
             StringTokenizer st = new StringTokenizer(s, " ");
-
-            int A = Integer.parseInt(st.nextToken());
-            int B = Integer.parseInt(st.nextToken());
-            int sum = A + B;
-            bw.write(Integer.toString(sum));
+            int num1 = Integer.parseInt(st.nextToken());
+            int num2 = Integer.parseInt(st.nextToken());
+            int calc = num1 + num2;
+            bw.write(String.valueOf(calc));
             bw.newLine();
         }
         bw.flush();
-        br.close();
         bw.close();
+        br.close();
     }
 }
