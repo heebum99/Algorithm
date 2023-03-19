@@ -9,22 +9,22 @@ public class Main {
         ArrayList<Integer> ary = new ArrayList<>();
         int N = Integer.parseInt(br.readLine());
 
-        while (N != 1) {
 
-            for (int i = 2; i <= N; i++) {
-
-                if (N % i == 0) {
-                    N /= i;
-                    ary.add(i);
-                    i--;
-                }
+        for (int i = 2; i <= Math.sqrt(N); i++) {
+            while (N % i == 0) {
+                ary.add(i);
+                N /= i;
             }
-
-            for (int i : ary) {
-                bw.write(Integer.toString(i) + "\n");
-            }
-
         }
+
+        if (N != 1) {
+            ary.add(N);
+        }
+
+        for (int i : ary) {
+            bw.write(Integer.toString(i) + "\n");
+        }
+
         bw.flush();
         bw.close();
         br.close();
