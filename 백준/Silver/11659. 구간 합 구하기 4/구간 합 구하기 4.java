@@ -16,18 +16,19 @@ public class Main {
 
         int[] nums = new int[N + 1]; //각 숫자들을 저장하는 배열
         st = new StringTokenizer(br.readLine(), " ");
+        int[] sum = new int[N + 1]; //부분 구간합을 저장하는 배열
 
         for (int i = 1; i <= N; i++) { //각 숫자 입력 후 배열에 저장
             nums[i] = Integer.parseInt(st.nextToken());
-        }
-
-        int[] sum = new int[N + 1]; //부분 구간합을 저장하는 배열
-
-        for (int i = 1; i <= N; i++) { //부분 구간합을 배열에 저장
-
             sum[i] = nums[i] + sum[i - 1];
-
         }
+
+
+//        for (int i = 1; i <= N; i++) { //부분 구간합을 배열에 저장
+//
+//            sum[i] = nums[i] + sum[i - 1];
+//
+//        }
 
         for (int i = 0; i < M; i++) { //i~j까지의 부분 구간합을 구한다.
             st = new StringTokenizer(br.readLine(), " ");
