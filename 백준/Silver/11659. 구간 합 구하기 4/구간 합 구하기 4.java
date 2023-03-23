@@ -14,13 +14,13 @@ public class Main {
         int M = Integer.parseInt(st.nextToken()); //테스트 케이스 횟수 M
         int num1, num2, result; //구간 i, j
 
-        int[] nums = new int[N + 1]; //각 숫자들을 저장하는 배열
+//        int[] nums = new int[N + 1]; //각 숫자들을 저장하는 배열
         st = new StringTokenizer(br.readLine(), " ");
         int[] sum = new int[N + 1]; //부분 구간합을 저장하는 배열
 
         for (int i = 1; i <= N; i++) { //각 숫자 입력 후 배열에 저장
-            nums[i] = Integer.parseInt(st.nextToken());
-            sum[i] = nums[i] + sum[i - 1];
+//            nums[i] = Integer.parseInt(st.nextToken());
+            sum[i] = Integer.parseInt(st.nextToken()) + sum[i - 1];
         }
 
 
@@ -35,12 +35,9 @@ public class Main {
 
             num1 = Integer.parseInt(st.nextToken());
             num2 = Integer.parseInt(st.nextToken());
-
-            if (num1 != 0) {
-                result = sum[num2] - sum[num1 - 1]; //num1 - 1을 해줘야 num1까지의 합이 출력
-                bw.write(Integer.toString(result));
-                bw.newLine();
-            }
+//            result = sum[num2] - sum[num1 - 1]; //num1 - 1을 해줘야 num1까지의 합이 출력
+            bw.write(Integer.toString(sum[num2] - sum[num1 - 1]));
+            bw.newLine();
         }
 
         bw.flush();
