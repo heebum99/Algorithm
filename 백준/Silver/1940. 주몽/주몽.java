@@ -19,16 +19,34 @@ public class Main {
         Arrays.sort(arr);
 
         int count = 0;
-        for (int i = 0; i < N; i++) {
-            for (int j = i + 1; j < N; j++) {
-                if (arr[i] + arr[j] == M) {
-                    count++;
-                } else if (arr[i] + arr[j] > M) {
-                    break;
-                }
+        //투포인터 방식 => i와 j를 양끝으로
+        int i = 0;
+        int j = N - 1;
+        while (i < j) {
+            if (arr[i] + arr[j] == M) {
+                count++;
+                j--;
+                i++;
+            } else if (arr[i] + arr[j] > M) {
+                j--;
+            } else {
+                i++;
             }
         }
 
+
+        //투포인터 방식 => j를 i보다 1크게 한 방식
+//        for (int i = 0; i < N; i++) {
+//            for (int j = i + 1; j < N; j++) {
+//                if (arr[i] + arr[j] == M) {
+//                    count++;
+//                } else if (arr[i] + arr[j] > M) {
+//                    break;
+//                }
+//            }
+//        }
+
         System.out.println(count);
+        br.close();
     }
 }
