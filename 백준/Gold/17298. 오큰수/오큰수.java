@@ -26,9 +26,7 @@ public class Main {
                 res[num] = arr[i]; //pop한 인덱스와 새로 입력 받은 값을 기반으로 결과 배열에 오큰수를 저장.
             }
 
-            if (stack.isEmpty() || arr[stack.peek()] >= arr[i]) { //스택이 비었거나 스택안의 인덱스 의 값이 새로 입력받은 값보다 클 경우
-                stack.push(i); //스택에 값이 아닌 인덱스를 push한다.
-            }
+            stack.push(i);
         }
 
         while (!stack.isEmpty()) {
