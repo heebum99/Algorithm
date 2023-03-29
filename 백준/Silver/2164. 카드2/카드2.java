@@ -20,17 +20,21 @@ public class Main {
             queue.offer(i + 1);
         }
 
-        int count = 1;
-        while (N > 1) {
-            if (count % 2 == 1) { //1,3,5...번째 시행에서는 첫번째 값을 버림.
-                queue.remove();
-                count++;
-                N--;
-            } else { //2,4,6...번째 시행에서는 첫번째 값을 맨뒤로 보냄
-                int temp = queue.poll();
-                queue.offer(temp);
-                count++;
-            }
+//        int count = 1;
+//        while (N > 1) {
+//            if (count % 2 == 1) { //1,3,5...번째 시행에서는 첫번째 값을 버림.
+//                queue.remove();
+//                count++;
+//                N--;
+//            } else { //2,4,6...번째 시행에서는 첫번째 값을 맨뒤로 보냄
+//                int temp = queue.poll();
+//                queue.offer(temp);
+//                count++;
+//            }
+//        }
+        while (queue.size() > 1) {
+            queue.poll();
+            queue.add(queue.poll());
         }
 
         bw.write(Integer.toString(queue.poll()));
