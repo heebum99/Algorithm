@@ -32,13 +32,14 @@ public class Main {
 //                count++;
 //            }
 //        }
+//        bw.write(Integer.toString(queue.poll()));
+//        bw.close();
         while (queue.size() > 1) {
             queue.poll();
             queue.add(queue.poll());
         }
 
-        bw.write(Integer.toString(queue.poll()));
-        bw.close();
+        System.out.println(queue.poll());
         br.close();
 
     }
