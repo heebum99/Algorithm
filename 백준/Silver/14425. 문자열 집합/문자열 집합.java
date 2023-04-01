@@ -19,8 +19,7 @@ public class Main {
 
         int count = 0;
         for (int i = 0; i < M; i++) {
-            String key = br.readLine();
-            if (hm.getOrDefault(key, 0) > 0) {
+            if (hm.containsKey(br.readLine())) {
                 count++;
             }
         }
