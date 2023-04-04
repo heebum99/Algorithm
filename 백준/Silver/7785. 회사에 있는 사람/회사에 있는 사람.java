@@ -20,11 +20,14 @@ public class Main {
             tm.put(st.nextToken(), st.nextToken());
         }
 
+        StringBuilder sb =new StringBuilder();
         for (Map.Entry<String, String> e : tm.entrySet()) {
             if(e.getValue().equals("enter")){
-                System.out.println(e.getKey());
+//                System.out.println(e.getKey());
+                sb.append(e.getKey()).append("\n");
             }
         }
+        System.out.println(sb);
 
 
         //hashmap을 이용한 정렬
