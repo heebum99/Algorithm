@@ -1,9 +1,32 @@
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
+    static int arr[];
+
     public static void main(String[] args) throws IOException {
+        //기수 정렬 사용
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        arr = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+        radix_sort(5); //기수정렬
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            sb.append(arr[i]).append("\n");
+        }
+
+        System.out.print(sb);
+        br.close();
+
+        //Arrays.sort() 정렬 사용
+        /*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(br.readLine()); //입력받을 정수 개수
@@ -20,6 +43,37 @@ public class Main {
         }
         bw.flush();
         bw.close();
-        br.close();
+        br.close();*/
+    }
+
+    private static void radix_sort(int size) {
+        int[] output = new int[arr.length]; //임시 저장 배열
+        int digit = 1; //자릿수
+        int count = 0;
+
+        while (count != size) {
+            int[] bucket = new int[10]; //기준자릿수의 숫자를 나타내는 0~9까지 10개
+            for (int i = 0; i < arr.length; i++) {
+                bucket[(arr[i] / digit) % 10]++;
+            }
+
+            for (int i = 1; i < bucket.length; i++) { //합 배열 이용
+                bucket[i] += bucket[i - 1];
+            }
+
+            for (int i = arr.length - 1; i >= 0; i--) {
+                output[bucket[(arr[i] / digit) % 10] - 1] = arr[i];
+                bucket[(arr[i] / digit) % 10]--;
+            }
+
+            for (int i = 0; i < arr.length; i++) {
+                //다음 자릿수로 이동하기 위해 현재 자릿수 기준 정렬 데이터를 저장
+                arr[i] = output[i];
+            }
+
+            digit *= 10; //자릿수 증가
+            count++;
+        }
+
     }
 }
