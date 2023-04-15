@@ -1,13 +1,33 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Main {
     static int arr[];
 
     public static void main(String[] args) throws IOException {
-        //기수 정렬 사용
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int[] arr = new int[10001];
+        for (int i = 0; i < N; i++) {
+            arr[Integer.parseInt(br.readLine())]++;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            if (arr[i] > 0) {
+                while (count < arr[i]) {
+                    count++;
+                    sb.append(i + "\n");
+                }
+            }
+        }
+        System.out.print(sb);
+
+        /*//기수 정렬 사용
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(br.readLine());
         arr = new int[N];
@@ -19,14 +39,16 @@ public class Main {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
+//            bw.write(Integer.toString(arr[i]) + "\n");
             sb.append(arr[i]).append("\n");
         }
 
-        System.out.print(sb);
+//        System.out.print(sb);
+//        bw.close();
         br.close();
 
         //Arrays.sort() 정렬 사용
-        /*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        *//*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int N = Integer.parseInt(br.readLine()); //입력받을 정수 개수
@@ -43,7 +65,7 @@ public class Main {
         }
         bw.flush();
         bw.close();
-        br.close();*/
+        br.close();*//*
     }
 
     private static void radix_sort(int size) {
@@ -74,6 +96,6 @@ public class Main {
             digit *= 10; //자릿수 증가
             count++;
         }
-
+*/
     }
 }
