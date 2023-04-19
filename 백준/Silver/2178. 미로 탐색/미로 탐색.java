@@ -27,7 +27,8 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             String input = st.nextToken();
             for (int j = 0; j < M; j++) {
-                arr[i][j] = Integer.parseInt(input.substring(j, j + 1));
+//                arr[i][j] = Integer.parseInt(input.substring(j, j + 1));
+                arr[i][j] = input.charAt(j) - '0';
             }
         }
         BFS(0, 0);
