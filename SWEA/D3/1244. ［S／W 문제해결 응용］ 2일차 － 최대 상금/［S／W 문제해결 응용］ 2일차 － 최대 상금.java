@@ -45,7 +45,7 @@ public class Solution {
             return answer;
         }
 
-        for (int j = 0; j < arr.length; j++) {
+        for (int j = start; j < arr.length; j++) {
             for (int k = j + 1; k < arr.length; k++) {
                 //swap 진행
                 swap(j, k);
